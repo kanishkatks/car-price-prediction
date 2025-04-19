@@ -1,68 +1,60 @@
-# Car Price Prediction: Data Preprocessing Pipeline
+# Car Price Prediction Project
 
-## Overview
-
-This project walks through the creation of a data preprocessing pipeline designed to prepare car data for price prediction using machine learning. The focus is on cleaning the data, exploring it to understand its characteristics, and building a reusable pipeline with Scikit-learn.
+This project demonstrates a complete machine learning workflow for predicting car prices based on various features. It covers data exploration, cleaning, preprocessing, feature engineering, model training using multiple regression algorithms, and performance comparison.
 
 ## Goals
 
-*   To clean and prepare a dataset containing car specifications for machine learning.
-*   To perform Exploratory Data Analysis (EDA) to understand the data, especially the target variable (`price`).
-*   To construct an efficient and robust Scikit-learn preprocessing pipeline that can handle both numerical and categorical features.
-*   To create a pipeline that can be easily integrated with various machine learning models for predicting car prices.
+*   Explore and understand the car dataset (`cars_dataset.csv`), identifying key characteristics, distributions, and potential data quality issues.
+*   Clean the data by handling anomalies and ensuring consistency.
+*   Develop a robust preprocessing pipeline using Scikit-learn to handle numerical (imputation, scaling) and categorical (imputation, encoding) features.
+*   Perform feature engineering to potentially create more informative features for the models.
+*   Train several different regression models (e.g., Linear Regression, Ridge, Lasso, Random Forest, Gradient Boosting, etc.) on the preprocessed data.
+*   Evaluate and compare the performance of these models using appropriate metrics (like R², MAE, RMSE) on a held-out test set.
+*   Identify the best-performing model based on the evaluation results.
+
 
 ## Dataset
 
-*   **Source:** The data was sourced from Wagon Public Datasets on AWS S3.
-*   **Content:** The dataset includes details for 205 different car models across 24 features (after dropping the ID column).
-*   **Target Variable:** `price` (the car's price).
-*   **Features:** A mix of numerical and categorical features, such as `wheelbase`, `horsepower`, `enginesize`, `fueltype`, `carbody`, `drivewheel`, etc.
+The dataset (`cars_dataset.csv`) contains various specifications for 205 car models. Key features include physical attributes (body style, dimensions, weight), engine/fuel specs (type, size, horsepower, fuel system), efficiency metrics (MPG), and the target variable, `price`.
 
 ## Methods & Workflow
 
-The process followed in the notebook includes:
+1.  **Exploratory Data Analysis (EDA):**
+    *   Loaded and inspected the data (shape, types, basic stats).
+    *   Analyzed the target variable (`price`) distribution and skewness.
+    *   Visualized relationships between features and the target variable.
+    *   Checked for correlations between numerical features.
+2.  **Data Cleaning:**
+    *   Mapped text-based numerical representations (e.g., `cylindernumber`, `doornumber`) to actual numbers.
+    *   Checked and handled duplicates and missing values (if any were found after initial checks).
+3.  **Feature Engineering (If applicable):**
+    *   Created new features from existing ones based on domain knowledge or EDA insights (e.g., power-to-weight ratio, combined MPG). *(Mention specific features created if done in the notebook)*.
+4.  **Preprocessing Pipeline (Scikit-learn):**
+    *   Separated features (X) and target (y).
+    *   Split data into Training and Testing sets.
+    *   **Numerical Features:** Applied imputation (e.g., median) and scaling (e.g., `RobustScaler` or `StandardScaler`).
+    *   **Categorical Features:** Applied imputation (e.g., most frequent) and encoding (e.g., `OneHotEncoder`).
+    *   Combined these steps using `ColumnTransformer` to create a unified preprocessor applied to the training data (`fit_transform`) and test data (`transform`).
+5.  **Model Training:**
+    *   Instantiated multiple regression models (e.g., Linear Regression, Ridge, Lasso, Decision Tree Regressor, Random Forest Regressor, Gradient Boosting Regressor).
+    *   Trained each model on the preprocessed training data.
+6.  **Model Evaluation & Comparison:**
+    *   Made predictions using each trained model on the preprocessed test data.
+    *   Calculated performance metrics (R², MAE, RMSE) for each model on the test set predictions.
+    *   Compared the scores to identify the best-performing model(s) for this specific task and dataset split.
 
-1.  **Data Loading & Initial Cleaning:**
-    *   Fetched the dataset and loaded it using pandas.
-    *   Removed the irrelevant `car_ID`.
-    *   Converted text representations of numbers (like `cylindernumber`) into actual numerical values.
-    *   Checked for and confirmed no duplicate rows or missing values.
-2.  **Exploratory Data Analysis (EDA):**
-    *   Examined the structure and types of data.
-    *   Visualized the distribution of the `price` variable using histograms, box plots, and Q-Q plots to check for skewness and outliers.
-3.  **Pipeline Construction (using Scikit-learn):**
-    *   Separated the features (input variables) from the target (`price`).
-    *   Dropped the `CarName` feature due to its high number of unique values, which is often less useful for general prediction models.
-    *   Created distinct preprocessing steps for numerical and categorical features.
-    *   Combined these steps into a single `ColumnTransformer` pipeline.
+## Results
 
-## Results: The Preprocessing Pipeline
+*   The EDA provided valuable insights into the dataset's structure and feature relationships.
+*   A preprocessing pipeline was successfully implemented to prepare the data for modeling.
+*   Multiple regression models were trained and evaluated.
+*   *(Crucially, add the comparison results here)*: Model **[Name of Best Model, e.g., Random Forest Regressor]** achieved the best performance on the test set with an R² score of **[R² Score]**, MAE of **[MAE Score]**, and RMSE of **[RMSE Score]**. Other models like **[Mention a couple of others, e.g., Linear Regression, Gradient Boosting]** achieved scores of **[Their Scores]**.
+*   *(Mention results of tuning or feature importance if performed)*.
 
-The main outcome of this notebook is a Scikit-learn `ColumnTransformer` pipeline (`preprocessor`) that applies the following steps:
+## Future Improvements
 
-1.  **For Numerical Features:**
-    *   **Imputation:** Fills any missing numerical values using the median (making the pipeline robust even though the initial dataset had no missing values).
-    *   **Scaling:** Scales the features using `RobustScaler`, which is less sensitive to outliers.
-2.  **For Categorical Features:**
-    *   **Imputation:** Fills any missing categorical values using the most frequent value.
-    *   **Encoding:** Converts categorical text data into a numerical format using `OneHotEncoder`. It's set to ignore unknown categories encountered during prediction.
-
-This pipeline takes the raw feature data and transforms it into a format ready to be fed into a machine learning model.
-
-## Technologies Used
-
-*   **Data Handling:** pandas, NumPy
-*   **Visualization:** Matplotlib, Seaborn
-*   **Statistical Analysis:** Statsmodels (for Q-Q plots)
-*   **Machine Learning Pipeline:** Scikit-learn (`Pipeline`, `ColumnTransformer`, `SimpleImputer`, `RobustScaler`, `OneHotEncoder`)
-*   **Environment:** Jupyter Notebook
-
-## Future Improvements & Next Steps
-
-While this project focuses on the preprocessing pipeline, the logical next steps are:
-
-*   **Model Training:** Feed the preprocessed data into various regression models (e.g., Linear Regression, Random Forest, Gradient Boosting).
-*   **Model Evaluation:** Assess model performance using metrics like R-squared, Mean Absolute Error (MAE), and Root Mean Squared Error (RMSE) on a separate test dataset.
-*   **Hyperparameter Tuning:** Fine-tune the parameters of the best-performing models to potentially improve accuracy.
-*   **Feature Engineering:** Create new, potentially more informative features from the existing ones.
-*   **Feature Selection:** Identify and possibly remove features that don't contribute significantly to the prediction accuracy.
+*   **Advanced Feature Engineering:** Explore more complex interactions or polynomial features.
+*   **Target Transformation:** Apply transformations (like log transform) to the `price` if skewness negatively impacts model performance (especially linear models).
+*   **More Models:** Experiment with other algorithms like XGBoost, LightGBM, CatBoost, SVR, or Neural Networks.
+*   **Cross-Validation:** Implement cross-validation during training and tuning for more robust performance estimates.
+*   **Ensemble Methods:** Combine predictions from multiple models.
