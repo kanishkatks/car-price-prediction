@@ -13,7 +13,6 @@ This project walks through the creation of a data preprocessing pipeline designe
 
 ## Dataset
 
-*   **Source:** The data was sourced from Wagon Public Datasets on AWS S3.
 *   **Content:** The dataset includes details for 205 different car models across 24 features (after dropping the ID column).
 *   **Target Variable:** `price` (the car's price).
 *   **Features:** A mix of numerical and categorical features, such as `wheelbase`, `horsepower`, `enginesize`, `fueltype`, `carbody`, `drivewheel`, etc.
