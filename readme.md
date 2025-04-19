@@ -48,8 +48,8 @@ The dataset (`cars_dataset.csv`) contains various specifications for 205 car mod
 *   The EDA provided valuable insights into the dataset's structure and feature relationships.
 *   A preprocessing pipeline was successfully implemented to prepare the data for modeling.
 *   Multiple regression models were trained and evaluated.
-*   *(Crucially, add the comparison results here)*: Model **[Name of Best Model, e.g., Random Forest Regressor]** achieved the best performance on the test set with an R² score of **[R² Score]**, MAE of **[MAE Score]**, and RMSE of **[RMSE Score]**. Other models like **[Mention a couple of others, e.g., Linear Regression, Gradient Boosting]** achieved scores of **[Their Scores]**.
-*   *(Mention results of tuning or feature importance if performed)*.
+*   Model **Gradient BoostRegressor]** achieved the best performance on the test set with an R² score of **0.91** Other models like **Random Forest Regressor  and AdaBoost Regressor** achieved scores of **0.89**.
+
 
 ## Future Improvements
 
