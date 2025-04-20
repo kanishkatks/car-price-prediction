@@ -27,18 +27,16 @@ The dataset (`cars_dataset.csv`) contains various specifications for 205 car mod
 2.  **Data Cleaning:**
     *   Mapped text-based numerical representations (e.g., `cylindernumber`, `doornumber`) to actual numbers.
     *   Checked and handled duplicates and missing values (if any were found after initial checks).
-3.  **Feature Engineering (If applicable):**
-    *   Created new features from existing ones based on domain knowledge or EDA insights (e.g., power-to-weight ratio, combined MPG). *(Mention specific features created if done in the notebook)*.
-4.  **Preprocessing Pipeline (Scikit-learn):**
+3.  **Preprocessing Pipeline (Scikit-learn):**
     *   Separated features (X) and target (y).
     *   Split data into Training and Testing sets.
     *   **Numerical Features:** Applied imputation (e.g., median) and scaling (e.g., `RobustScaler` or `StandardScaler`).
     *   **Categorical Features:** Applied imputation (e.g., most frequent) and encoding (e.g., `OneHotEncoder`).
     *   Combined these steps using `ColumnTransformer` to create a unified preprocessor applied to the training data (`fit_transform`) and test data (`transform`).
-5.  **Model Training:**
+4.  **Model Training:**
     *   Instantiated multiple regression models (e.g., Linear Regression, Ridge, Lasso, Decision Tree Regressor, Random Forest Regressor, Gradient Boosting Regressor).
     *   Trained each model on the preprocessed training data.
-6.  **Model Evaluation & Comparison:**
+5.  **Model Evaluation & Comparison:**
     *   Made predictions using each trained model on the preprocessed test data.
     *   Calculated performance metrics (R², MAE, RMSE) for each model on the test set predictions.
     *   Compared the scores to identify the best-performing model(s) for this specific task and dataset split.
