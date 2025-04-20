@@ -8,8 +8,8 @@ This project demonstrates a complete machine learning workflow for predicting ca
 *   Clean the data by handling anomalies and ensuring consistency.
 *   Develop a robust preprocessing pipeline using Scikit-learn to handle numerical (imputation, scaling) and categorical (imputation, encoding) features.
 *   Perform feature engineering to potentially create more informative features for the models.
-*   Train several different regression models (e.g., Linear Regression, Ridge, Lasso, Random Forest, Gradient Boosting, etc.) on the preprocessed data.
-*   Evaluate and compare the performance of these models using appropriate metrics (like R², MAE, RMSE) on a held-out test set.
+*   Train several different regression models (e.g., Linear Regression, Random Forest, Gradient Boosting, etc.) on the preprocessed data.
+*   Evaluate and compare the performance of these models using appropriate metrics (like R²) on a held-out test set.
 *   Identify the best-performing model based on the evaluation results.
 
 
